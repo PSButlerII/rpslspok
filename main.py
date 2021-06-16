@@ -1,6 +1,5 @@
+from battlefield import Battlefield
 
-from player import Player
-
-
-Player.name = "Preston"
-print(Player.name)
+if __name__ == "__main__":
+    obj = Battlefield()
+    obj.run_game()
