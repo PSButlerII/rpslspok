@@ -1,13 +1,16 @@
 import random
+import automaticplayer
+import human
+import random
+import player
 from human import Human
 from automaticplayer import AI
 
 
 class Battlefield:
-    def __init__(self, Human, AI):
-
+    def __init__(self):
         self.player_one = Human(input("WHAT IS YOUR NAME"))
-        self.player_two = self
+        self.player_two = AI()
         self.draw = 0
 
     def run_game(self):
@@ -22,7 +25,9 @@ class Battlefield:
         print("Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock Spock vaporizes Rock \n")
 
     def introduction_one(self):
-        print(f"Welcome {self.player_one.name},and {self.player_two} to RPSLS: Rock Paper Scissor Lizard Spock")
+        print(f"Welcome {self.player_one.name},and {self.player_two} to RPSLS: Rock Paper Scissor "
+              f"Lizard Spock"
+              )
         print('The rules are simple')
         print("Rock crushes Scissors, Scissors cuts Paper, Paper covers Rock")
         print("Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors")
@@ -31,13 +36,13 @@ class Battlefield:
     def choose_game_mode(self):
         response = input("How many players?")
         if response == "2":
-            self.player_two = Human(str(input("ENTER SECOND PLAYER NAME")))
+            player.player_two = Human(str(input("ENTER SECOND PLAYER NAME")))
             self.introduction_two()
             self.multiplayer()
         else:
-            self.player_two = str("Neumann")
+            self.player_two = "Neumann"
             self.introduction_one()
-            # self.singleplayer()
+            self.single_player()
 
     # def round_rules(self):
     #     self.rock
@@ -70,7 +75,7 @@ class Battlefield:
                 print("good, good")
             finally:
                 ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
-        self.player_two.chooses_gesture = self.player_two.gesture[ii]
+        self.player_two.chosen_gesture = self.player_two.gesture[ii]
 
     def single_player(self):
         i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
@@ -83,20 +88,12 @@ class Battlefield:
                 print("good, good")
             finally:
                 i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
-        self.player_one.chosen_gesture = self.player_one.gesture[i]
-        print(self.player_one.chosen_gesture)
-
-        ii = self.gesture(choose_gesture)
-        while ii > 5:
-            try:
-                self.player_two.chosen_gesture = self.player_two.gesture[ii]
-            except IndexError:
-                print("Sorry, that is not a list item. Try again")
-            else:
-                print("good, good")
-            finally:
-                ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
-        self.player_two.chooses_gesture = self.player_two.gesture[ii]
+                self.player_one.chosen_gesture = self.player_one.gesture
+                print(self.player_one.chosen_gesture)
+        for ii in 
+        ii = int(self.player_one.gesture}
+        self.player_two.chosen_gesture = random.choice(self.player_two.gesture[ii])
+        print(f"\nYou picked {self.player_one.chosen_gesture}, Neumann picked {self.player_two.chosen_gesture}")
 
     def game_rounds(self):
         pass
