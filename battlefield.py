@@ -90,9 +90,8 @@ class Battlefield:
                 i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
                 self.player_one.chosen_gesture = self.player_one.gesture
                 print(self.player_one.chosen_gesture)
-        for ii in 
-        ii = int(self.player_one.gesture}
-        self.player_two.chosen_gesture = random.choice(self.player_two.gesture[ii])
+
+        self.player_two.chosen_gesture = random.choice(self.player_two.gesture)
         print(f"\nYou picked {self.player_one.chosen_gesture}, Neumann picked {self.player_two.chosen_gesture}")
 
     def game_rounds(self):
