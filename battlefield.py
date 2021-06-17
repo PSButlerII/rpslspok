@@ -91,11 +91,13 @@ class Battlefield:
                 self.player_one.chosen_gesture = self.player_one.gesture
                 print(self.player_one.chosen_gesture)
 
-        self.player_two.chosen_gesture = random.choice(self.player_two.gesture)
+        AI.choose_gesture(self.player_two.chosen_gesture)
+
         print(f"\nYou picked {self.player_one.chosen_gesture}, Neumann picked {self.player_two.chosen_gesture}")
 
     def game_rounds(self):
         pass
+
     # Determine winner of round, winner's score increases
     # Loop to continue gameplay until best of three occurs
 
@@ -103,31 +105,25 @@ class Battlefield:
     # Display winner of game
     # Prompt to play again? - Not MVP
 
-    # def draw(self):
-    #     if self.player_one.chosen_gesture == self.player_one.chosen_gesture:
-    #         pass
-    # def rock(self):
-    #  if self.player_one.chosen_gesture == rock:
-    #      if self.player_two.chosen_gesture = scissor:
-    #          print("Rock beats Scissors")
-    #          elif self.player_two.chosen_gesture ==
-    #
-    # def paper():
-    #     if self.player_one.chosen_gesture == paper:
-    #         if self.player_two.chosen_gesture = scissor:
-    #             print("Rock beats Scissors")
-    #
-    # def scissors():
-    #     if self.player_one.chosen_gesture == rock:
-    #         if self.player_two.chosen_gesture = scissor:
-    #             print("Rock beats Scissors")
-    #
-    # def lizard():
-    #     if self.player_one.chosen_gesture == rock:
-    #         if self.player_two.chosen_gesture = scissor:
-    #             print("Rock beats Scissors")
-    #
-    # def spock():
-    #     if self.player_one.chosen_gesture == rock:
-    #         if self.player_two.chosen_gesture = scissor:
-    #             print("Rock beats Scissors")
+    def rules(self):
+        self.player_two.gesture = ["rock [0]", "paper [1]", "scissors [2]", "lizard [3]", "spock [4]"]
+        AI.choose_gesture(self.player_two.chosen_gesture)
+        print(f"\nYou chose {self.player_one.chosen_gesture}, Neumann chose {self.player_two.chosen_gesture}.\n")
+
+        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+            print("It's a tie!")
+        elif self.player_one.chosen_gesture == "rock":
+            if self.player_two.chosen_gesture == "scissors" or "lizard":
+                print("You win!")
+            else:
+                print("Paper covers rock! You lose.")
+        elif self.player_one.chosen_gesture == "paper":
+            if self.player_two.chosen_gesture == "rock" or "spock":
+                print("You win!")
+            else:
+                print("Scissors cuts paper! You lose.")
+        elif self.player_one.chosen_gesture == "scissors":
+            if self.player_two.chosen_gesture == "paper" or "lizard":
+                print("You win!")
+            else:
+                print("You lose.")
