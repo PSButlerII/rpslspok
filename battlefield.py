@@ -15,7 +15,6 @@ class Battlefield:
 
     def run_game(self):
         self.choose_game_mode()
-        self.game_rounds()
 
     def introduction_two(self):
         print(f"Welcome {self.player_one.name},and {self.player_two.name} to RPSLS: Rock Paper Scissor Lizard Spock")
@@ -25,7 +24,7 @@ class Battlefield:
         print("Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock Spock vaporizes Rock \n")
 
     def introduction_one(self):
-        print(f"Welcome {self.player_one.name},and {self.player_two} to RPSLS: Rock Paper Scissor "
+        print(f"Welcome {self.player_one.name},and {self.player_two.name} to RPSLS: Rock Paper Scissor "
               f"Lizard Spock"
               )
         print('The rules are simple')
@@ -36,46 +35,83 @@ class Battlefield:
     def choose_game_mode(self):
         response = input("How many players?")
         if response == "2":
-            player.player_two = Human(str(input("ENTER SECOND PLAYER NAME")))
+            self.player_two = Human(str(input("ENTER SECOND PLAYER NAME")))
             self.introduction_two()
             self.multiplayer()
         else:
-            self.player_two = "Neumann"
+            automaticplayer.player_two = "Neumann"
             self.introduction_one()
             self.single_player()
 
-    # def round_rules(self):
-    #     self.rock
-    #     self.paper
-    #     self.scissors
-    #     self.lizard
-    #     self.spock
-
     def multiplayer(self):
-        i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
-        while i > 5:
-            try:
-                self.player_one.chosen_gesture = self.player_one.gesture[i]
-            except IndexError:
-                print("Sorry, that is not a list item. Try again")
-            else:
-                print("good, good")
-            finally:
-                i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
-        self.player_one.chosen_gesture = self.player_one.gesture[i]
-        print(self.player_one.chosen_gesture)
+        for x in range(3):
+            i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
+            while i > 5:
+                try:
+                    self.player_one.chosen_gesture = self.player_one.gesture[i]
+                except IndexError:
+                    print("Sorry, that is not a list item. Try again")
+                else:
+                    print("good, good")
+                finally:
+                    i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
+                    self.player_one.chosen_gesture = self.player_one.gesture[i]
+                    print(self.player_one.chosen_gesture)
 
-        ii = int(input(f"{self.player_two.gesture} Pick a number Player two"))
-        while ii > 5:
-            try:
-                self.player_two.chosen_gesture = self.player_two.gesture[ii]
-            except IndexError:
-                print("Sorry, that is not a list item. Try again")
-            else:
-                print("good, good")
-            finally:
-                ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
-        self.player_two.chosen_gesture = self.player_two.gesture[ii]
+            ii = int(input(f"{self.player_two.gesture} Pick a number Player two"))
+            while ii > 5:
+                try:
+                    self.player_two.chosen_gesture = self.player_two.gesture[ii]
+                except IndexError:
+                    print("Sorry, that is not a list item. Try again")
+                else:
+                    print("good, good")
+                finally:
+                    ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
+                    self.player_two.chosen_gesture = self.player_two.gesture[ii]
+
+            if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+                print("It's a tie!")
+            elif self.player_one.chosen_gesture == "rock":
+                if self.player_two.chosen_gesture == "scissors":
+                    print("You win!")
+                    self.player_one.score += 1
+                elif self.player_two.chosen_gesture == "lizard":
+                    print("You win!")
+                    self.player_one.score += 1
+                else:
+                    print("You lose.")
+                    self.player_two.score += 1
+            elif self.player_one.chosen_gesture == "paper":
+                if self.player_two.chosen_gesture == "rock":
+                    print("You win!")
+                    self.player_one.score += 1
+                elif self.player_two.chosen_gesture == "spock":
+                    print("You win!")
+                    self.player_one.score += 1
+                else:
+                    print("You lose.")
+                    self.player_two.score += 1
+            elif self.player_one.chosen_gesture == "scissors":
+                if self.player_two.chosen_gesture == "paper":
+                    print("You win!")
+                    self.player_one.score += 1
+                elif self.player_two.chosen_gesture == "lizard":
+                    print("You win!")
+                    self.player_one.score += 1
+                else:
+                    print("You lose.")
+                    self.player_two.score += 1
+            while ii > 5:
+                try:
+                    self.player_two.chosen_gesture = self.player_two.gesture[ii]
+                except IndexError:
+                    print("Sorry, that is not a list item. Try again")
+                else:
+                    print("good, good")
+                finally:
+                    ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
+            self.player_two.chosen_gesture = self.player_two.gesture[ii]
 
     def single_player(self):
         i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
@@ -90,40 +126,51 @@ class Battlefield:
                 i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
                 self.player_one.chosen_gesture = self.player_one.gesture
                 print(self.player_one.chosen_gesture)
+            AI.choose_gesture(self.player_two.chosen_gesture)
+            print(f"\nYou picked {self.player_one.chosen_gesture}, Neumann picked {self.player_two.chosen_gesture}")
 
-        AI.choose_gesture(self.player_two.chosen_gesture)
+    # def rules(self):
+    #     self.player_two.gesture = ["rock [0]", "paper [1]", "scissors [2]", "lizard [3]", "spock [4]"]
+    #     AI.choose_gesture(self.player_two.chosen_gesture)
+    #     print(f"\nYou chose {self.player_one.chosen_gesture}, Neumann chose {self.player_two.chosen_gesture}.\n")
+    #     #
+    # if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+    #     print("It's a tie!")
+    # elif self.player_one.chosen_gesture == "rock":
+    #     if self.player_two.chosen_gesture == "scissors" or "lizard":
+    #         print("You win!")
+    #         self.player_one.score += 1
+    #     else:
+    #         print("Paper covers rock! You lose.")
+    #         self.player_two.score += 1
+    # elif self.player_one.chosen_gesture == "paper":
+    #     if self.player_two.chosen_gesture == "rock" or "spock":
+    #         print("You win!")
+    #         self.player_one.score += 1
+    #     else:
+    #         print("Scissors cuts paper! You lose.")
+    #         self.player_two.score += 1
+    # elif self.player_one.chosen_gesture == "scissors":
+    #     if self.player_two.chosen_gesture == "paper" or "lizard":
+    #         print("You win!")
+    #         self.player_one.score += 1
+    #     else:
+    #         print("You lose.")
+    #         self.player_two.score += 1
+    # while ii > 5:
+    #     try:
+    #         self.player_two.chosen_gesture = self.player_two.gesture[ii]
+    #     except IndexError:
+    #         print("Sorry, that is not a list item. Try again")
+    #     else:
+    #         print("good, good")
+    #     finally:
+    #         ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
+    # self.player_two.chosen_gesture = self.player_two.gesture[ii]
 
-        print(f"\nYou picked {self.player_one.chosen_gesture}, Neumann picked {self.player_two.chosen_gesture}")
+# Determine winner of round, winner's score increases
+# Loop to continue gameplay until best of three occurs
 
-    def game_rounds(self):
-        pass
-
-    # Determine winner of round, winner's score increases
-    # Loop to continue gameplay until best of three occurs
-
-    # End Game
-    # Display winner of game
-    # Prompt to play again? - Not MVP
-
-    def rules(self):
-        self.player_two.gesture = ["rock [0]", "paper [1]", "scissors [2]", "lizard [3]", "spock [4]"]
-        AI.choose_gesture(self.player_two.chosen_gesture)
-        print(f"\nYou chose {self.player_one.chosen_gesture}, Neumann chose {self.player_two.chosen_gesture}.\n")
-
-        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
-            print("It's a tie!")
-        elif self.player_one.chosen_gesture == "rock":
-            if self.player_two.chosen_gesture == "scissors" or "lizard":
-                print("You win!")
-            else:
-                print("Paper covers rock! You lose.")
-        elif self.player_one.chosen_gesture == "paper":
-            if self.player_two.chosen_gesture == "rock" or "spock":
-                print("You win!")
-            else:
-                print("Scissors cuts paper! You lose.")
-        elif self.player_one.chosen_gesture == "scissors":
-            if self.player_two.chosen_gesture == "paper" or "lizard":
-                print("You win!")
-            else:
-                print("You lose.")
+# End Game
+# Display winner of game
+# Prompt to play again? - Not MVP

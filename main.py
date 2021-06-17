@@ -4,4 +4,4 @@ from human import Human
 
 if __name__ == "__main__":
     obj = Battlefield()
-    obj.run_game()
+    obj.choose_game_mode()
