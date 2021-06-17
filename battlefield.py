@@ -99,30 +99,7 @@ class Battlefield:
         self.player_two.chooses_gesture = self.player_two.gesture[ii]
 
     def game_rounds(self):
-        i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
-        while i > 5:
-            try:
-                self.player_one.chosen_gesture = self.player_one.gesture[i]
-            except IndexError:
-                print("Sorry, that is not a list item. Try again")
-            else:
-                print("good, good")
-            finally:
-                i = int(input(f"{self.player_one.gesture}  Pick a number!!!"))
-        self.player_one.chosen_gesture = self.player_one.gesture[i]
-        print(self.player_one.chosen_gesture)
-
-        ii = self.gesture(choose_gesture)
-        while ii > 5:
-            try:
-                self.player_two.chosen_gesture = self.player_two.gesture[ii]
-            except IndexError:
-                print("Sorry, that is not a list item. Try again")
-            else:
-                print("good, good")
-            finally:
-                ii = int(input(f"{self.player_two.gesture}  Pick a number!!!"))
-        self.player_two.chooses_gesture = self.player_two.gesture[ii]
+        pass
     # Determine winner of round, winner's score increases
     # Loop to continue gameplay until best of three occurs
 
