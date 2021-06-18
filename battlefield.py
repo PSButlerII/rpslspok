@@ -35,16 +35,35 @@ class Battlefield:
     def play_game(self):
         self.player_one.choose_gesture()
         self.player_two.choose_gesture()
+
+
+
         if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print(self.player_one.chosen_gesture)
-        if self.player_one.chosen_gesture != self.player_two.chosen_gesture:
-            print("NOT EQUAL")
-
-
-
-        # while self.player_one.score or self.player_two.score < 3:
-        #     if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
-        #         print("IT'S A TIE")
+        elif self.player_one.chosen_gesture == self.player_one.gesture:
+            if self.player_two.chosen_gesture == self.player_two.gesture or self.player_one.gesture[3]:
+                print("you win")
+                self.player_one.score += 1
+            else:
+                print("YOU LOSE")
+                self.player_two.score += 1
+        elif self.player_one.chosen_gesture == self.player_two.chosen_gesture[1]:
+            if self.player_two.chosen_gesture == [0]:
+                if self.player_two.chosen_gesture == [4]:
+                    print("you win")
+                    self.player_one.score += 1
+                else:
+                    print("YOU LOSE")
+                    self.player_two.score += 1
+        if self.player_two.score == 3:
+            print("YOU LOSE THE GAME PLAY AGAIN?")
+        elif self.player_one.score == 3:
+            print("YOU WIN THE GAME PLAY AGAIN?")
+        else:
+            self.play_game()
+    # while self.player_one.score or self.player_two.score < 3:
+    #     if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+    #         print("IT'S A TIE")
 
     # self.player_two.chosen_gesture = [i]
     # self.player_one.chosen_gesture = [i]
